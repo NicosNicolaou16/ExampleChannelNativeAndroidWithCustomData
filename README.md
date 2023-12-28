@@ -1,5 +1,5 @@
 # Example Channel Native Android With Custom Data
-This example project shows channel between Flutter and Native Android and vice versa. Send data from Flutter to Native Android and vice versa.
+This example project shows channel between Flutter and Native Android. Send data from Flutter to Native Android and vice versa.
 
 NOTE: EXAMPLE ONLY FOR ANDROID
 
