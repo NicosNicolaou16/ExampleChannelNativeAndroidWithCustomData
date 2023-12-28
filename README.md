@@ -1,4 +1,4 @@
-# Example Channel Native Android With Complex Data
+# Example Channel Native Android With Custom Data
 
 ## Versions
 
