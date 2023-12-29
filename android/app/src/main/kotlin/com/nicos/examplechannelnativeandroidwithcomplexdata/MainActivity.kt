@@ -20,29 +20,41 @@ class MainActivity : FlutterActivity() {
         val messenger = flutterEngine.dartExecutor.binaryMessenger
         MethodChannel(messenger, CHANNEL_NAME).setMethodCallHandler { call, result ->
             if (call.method.toString() == METHOD_NAME) {
-                JSONObject(call.arguments.toString()).apply {
-                    //parse the data from Flutter
-                    nativeDataModel.id = this.optInt("id")
-                    nativeDataModel.text = this.optString("text")
-                    nativeDataModel.subText = this.optString("sub_text")
-
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Data from Flutter -> id: ${nativeDataModel.id} text: ${nativeDataModel.text} subText: ${nativeDataModel.subText}",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    //updating the value - lets say processing...
-                    updateTheValuesAndSendingBackToFlutter(result = result)
-                }
+                parseDataFromFlutter(call.arguments.toString(), result)
             }
         }
     }
 
+    private fun parseDataFromFlutter(arguments: String, result: MethodChannel.Result) {
+        JSONObject(arguments).apply {
+            //parse the data from Flutter and save it into native data model
+            nativeDataModel.id = this.optInt("id")
+            nativeDataModel.text = this.optString("text")
+            nativeDataModel.subText = this.optString("sub_text")
+
+            Toast.makeText(
+                this@MainActivity,
+                "Current data from Flutter -> id: ${nativeDataModel.id} text: ${nativeDataModel.text} subText: ${nativeDataModel.subText}",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            updateTheValuesAndSendingBackToFlutter(result = result)
+        }
+    }
+
     private fun updateTheValuesAndSendingBackToFlutter(result: MethodChannel.Result) {
-        nativeDataModel.id = 2
-        nativeDataModel.text = "text1"
-        nativeDataModel.subText = "subText1"
+        //updating the value - lets say request an api and get the new data
+        nativeDataModel.apply {
+            id = (2..10).random()
+            text = "updated text"
+            subText = "updated subText"
+        }
+
+        Toast.makeText(
+            this@MainActivity,
+            "Updated data from Flutter -> id: ${nativeDataModel.id} text: ${nativeDataModel.text} subText: ${nativeDataModel.subText}",
+            Toast.LENGTH_SHORT
+        ).show()
 
         JSONObject().apply {
             this.put("id", nativeDataModel.id)

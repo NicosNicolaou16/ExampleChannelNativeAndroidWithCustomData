@@ -17,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   ChannelDataModel _channelDataModel = ChannelDataModel();
   final _channelMethod = const MethodChannel(_channel_name);
   late Map<String, dynamic> _body;
-  bool isLoading = true;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -29,39 +29,44 @@ class _MyAppState extends State<MyApp> {
     await Future.delayed(const Duration(milliseconds: 1000), () async {
       _channelDataModel = await ChannelDataModel.createTheDataModel();
       setState(() {
-        _body = _createMap(_channelDataModel);
-        isLoading = false;
+        _body = _createMapForNativeAndroid(_channelDataModel);
+        _isLoading = false;
       });
     });
   }
 
   _sendDataToNativeAndroid() async {
     setState(() {
-      isLoading = true;
+      _isLoading = true;
     });
     await Future.delayed(const Duration(milliseconds: 1000), () async {
       await _channelMethod
           .invokeMethod(_method_name, _body.toString())
-          .then((value) {
-        if (value != null) {
-          Map<String, dynamic> bodyUpdated = jsonDecode(value);
-          setState(() {
-            _channelDataModel.id = bodyUpdated["id"];
-            _channelDataModel.text = bodyUpdated["text"];
-            _channelDataModel.subText = bodyUpdated["sub_text"];
-            isLoading = false;
-          });
-        }
+          .then((value) async {
+        await _parseDataFromNativeAndroid(value);
       });
     });
   }
 
-  Map<String, dynamic> _createMap(ChannelDataModel channelDataModel) {
+  Map<String, dynamic> _createMapForNativeAndroid(
+      ChannelDataModel channelDataModel) {
     return {
       "id": _channelDataModel.id,
       "text": _channelDataModel.text,
       "sub_text": _channelDataModel.subText,
     };
+  }
+
+  _parseDataFromNativeAndroid(dynamic value) async {
+    if (value != null) {
+      Map<String, dynamic> bodyUpdated = jsonDecode(value);
+      setState(() {
+        _channelDataModel.id = bodyUpdated["id"];
+        _channelDataModel.text = bodyUpdated["text"];
+        _channelDataModel.subText = bodyUpdated["sub_text"];
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -99,7 +104,7 @@ class _MyAppState extends State<MyApp> {
                 )
               ],
             ),
-            if (isLoading) const Center(child: CircularProgressIndicator())
+            if (_isLoading) const Center(child: CircularProgressIndicator())
           ],
         ),
       ),
