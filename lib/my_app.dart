@@ -85,14 +85,16 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 350,
-                  child: Text(
-                    "id: ${_channelDataModel.id ?? ""} text: ${_channelDataModel.text ?? ""} subText: ${_channelDataModel.subText ?? ""}",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
+                Center(
+                  child: SizedBox(
+                    width: 350,
+                    child: Text(
+                      "id: ${_channelDataModel.id ?? ""} text: ${_channelDataModel.text ?? ""} subText: ${_channelDataModel.subText ?? ""}",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),

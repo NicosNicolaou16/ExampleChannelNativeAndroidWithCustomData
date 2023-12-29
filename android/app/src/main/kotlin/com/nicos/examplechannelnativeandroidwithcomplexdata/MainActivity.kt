@@ -45,7 +45,7 @@ class MainActivity : FlutterActivity() {
     private fun updateTheValuesAndSendingBackToFlutter(result: MethodChannel.Result) {
         //updating the value - lets say request an api and get the new data
         nativeDataModel.apply {
-            id = (2..10).random()
+            id = (2..15).random()
             text = "updated text"
             subText = "updated subText"
         }
