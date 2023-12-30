@@ -45,14 +45,14 @@ class MainActivity : FlutterActivity() {
     private fun updateTheValuesAndSendingBackToFlutter(result: MethodChannel.Result) {
         //updating the value - lets say request an api and get the new data
         nativeDataModel.apply {
-            id = (2..15).random()
+            id = (2..15).random() // get random id with range 2 - 15
             text = "updated text"
             subText = "updated subText"
         }
 
         Toast.makeText(
             this@MainActivity,
-            "Updated data from Flutter -> id: ${nativeDataModel.id} text: ${nativeDataModel.text} subText: ${nativeDataModel.subText}",
+            "Updated data to Flutter -> id: ${nativeDataModel.id} text: ${nativeDataModel.text} subText: ${nativeDataModel.subText}",
             Toast.LENGTH_SHORT
         ).show()
 
