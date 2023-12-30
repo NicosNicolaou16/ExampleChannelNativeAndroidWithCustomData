@@ -12,10 +12,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  static const String _channel_name = "complex_data_channel_name";
-  static const String _method_name = "complex_data";
+  static const String _channelName = "complex_data_channel_name";
+  static const String _methodName = "complex_data";
   ChannelDataModel _channelDataModel = ChannelDataModel();
-  final _channelMethod = const MethodChannel(_channel_name);
+  final _channelMethod = const MethodChannel(_channelName);
   late Map<String, dynamic> _body;
   bool _isLoading = true;
 
@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
     });
     await Future.delayed(const Duration(milliseconds: 1000), () async {
       await _channelMethod
-          .invokeMethod(_method_name, _body.toString())
+          .invokeMethod(_methodName, _body.toString())
           .then((value) async {
         await _parseDataFromNativeAndroid(value);
       });
