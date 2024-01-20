@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
   static const String _channelName = "complex_data_channel_name";
   static const String _methodName = "complex_data";
   ChannelDataModel _channelDataModel = ChannelDataModel();
-  final _channelMethod = const MethodChannel(_channelName);
+  final MethodChannel _channelMethod = const MethodChannel(_channelName);
   late Map<String, dynamic> _body;
   bool _isLoading = true;
 
