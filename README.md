@@ -6,8 +6,8 @@ NOTE: EXAMPLE ONLY FOR ANDROID
 
 ## Versions
 
-Flutter SDK version: 3.22.2 <br />
-Dart Version: 3.4.3 <br />
+Flutter SDK version: 3.24.0 <br />
+Dart Version: 3.5.0 <br />
 
 ## References (Channel)
 https://medium.com/@shreebhagwat94/flutter-platform-channel-46578d21e69 <br />
