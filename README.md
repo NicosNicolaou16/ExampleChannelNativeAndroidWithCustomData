@@ -2,7 +2,8 @@
 This example project shows the channel (communication) between Flutter side and Native Android side.
 Otherwise, it shows how I handle custom data model and send the data from Flutter side to Native Android side and vice versa.
 
-NOTE: EXAMPLE ONLY FOR ANDROID
+> [!IMPORTANT]
+> NOTE: EXAMPLE FOR ANDROID ONLY. <br />
 
 ## Versioning
 
