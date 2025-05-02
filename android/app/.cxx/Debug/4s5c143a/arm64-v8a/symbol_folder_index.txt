@@ -1,0 +1,1 @@
+C:\Users\Nicos\Desktop\AndroidProjects\ExampleChannelNativeAndroidWithComplexData\build\app\intermediates\cxx\Debug\4s5c143a\obj\arm64-v8a
