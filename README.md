@@ -9,8 +9,8 @@ and Native Android.
 
 ## Versioning
 
-Flutter SDK version: 3.27.1 <br />
-Dart Version: 3.6.0 <br />
+Flutter SDK version: 3.29.3 <br />
+Dart Version: 3.7.2 <br />
 
 ## References
 
